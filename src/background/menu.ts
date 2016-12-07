@@ -16,7 +16,7 @@ chrome.contextMenus.onClicked.addListener((info: OnClickData, tab: Tab) => {
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
-    contexts: ['showTweetLinkUi'],
+    contexts: ['link'],
     title: 'Tweet Link',
     id: menuItemId.showTweetLinkUi.toString()
   })});
