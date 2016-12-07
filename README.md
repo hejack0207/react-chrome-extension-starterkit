@@ -50,37 +50,38 @@ And on any webpage, right-click any link to expose the context menu.
 
 ## Data-flow
 ```
-   +----------------+                         +--------------------------------------+
-   | browser_action +-------sendTweet--------->  background script                   |
-   |                |                         |  'handler.ts'                        |
-   |                |                         |                                      |
-   |                +------copyToClipboard---->                                      |
-   |                |                         |                                      |
-   +----------------+                         |                                      |
-                                              |                                      |
-                                              +--------------------------------------+
-                                                    ^           ^
-                                                    |           |
-   +---------------------------+                    |           |
-   | background script         |                    |           |
-   | 'menu.ts'                 |                    |           |
-   |                           |                    |           |
-   |  Installs context menu    |                    |           |
-   +---------------------------+                    |           |
-                |                                   |           |
-            onClick                                 |           |
-                |                                   |           |
-  +-------------v----------------+                  |           |
-  |content_script                |                  |           |
-  |'launcher.ts'                 +-------sendTweet--+           |
-  |                              |                              |
-  |Registers message handlers to |                              |
-  |inject iframes into webpages. |                              |
-  |                              |                              |
-  |                              +-------copyToClipboard--------+
-  |   Inject tweet-link.html     |
-  |                              |
-  +------------------------------+
+ +----------------+                         +--------------------------------------+
+ | browser_action +-------sendTweet--------->  background script                   |
+ |                |                         |  'handler.ts'                        |
+ |                |                         |                                      |
+ |                +------copyToClipboard---->                                      |
+ |                |                         |                                      |
+ +----------------+                         |                                      |
+                                            |                                      |
+                                            +---------+------------------+---------+
+                                                      ^                  ^
+                                                      |                  |
+ +---------------------------+                        |                  |
+ | background script         |                        |                  |
+ | 'menu.ts'                 |                     sendTweet      copyToClipboard
+ |                           |                        +                  +
+ |  Installs context menu    |                        |                  |
+ +------------+--------------+                        |                  |
+              |                                       |                  |
+          onClick                                     |                  |
+              |                                       |                  |
++-------------v----------------+                      |                  |
+|content_script                |                      |                  |
+|'launcher.ts'                 |                      |                  |
+|                              |                      |                  |
+|Registers message handlers to |                 +----+------------------+-----+
+|inject iframes into webpages. |                 | tweet-link.html             |
+|                              |                 |                             |
+|                              +-----inject------>                             |
+|                              |                 |                             |
+|                              |                 |                             |
++------------------------------+                 +-----------------------------+
+
 ```
 
 (Diagram made with [AsciiFlow](http://asciiflow.com))
