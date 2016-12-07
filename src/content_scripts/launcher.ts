@@ -19,7 +19,7 @@ const configFactories: LaunchConfigs = {
   [MessageType.showTweetLink]: (message: ShowTweetLinkMessage) => {
     return {
       src: chrome.extension.getURL(`tweet-link.html?url=${message.url}&tabId=${message.tabId}`),
-      className: 'tweet-showTweetLinkUi-popup'
+      className: 'tweet-link-popup'
     }
   }
 };
