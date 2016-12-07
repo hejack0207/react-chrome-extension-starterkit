@@ -3,7 +3,6 @@ import tweet from "./tweet";
 import {Message} from "../../messaging";
 import {MessageType, CopyToClipboardMessage, SendTweetMessage} from "../protocol";
 import {MessageType as ContentScriptMessageType, DestroyFrameMessage} from '../../content_scripts/protocol'
-import clearAll = chrome.alarms.clearAll;
 
 interface MessageHandler {
   [index: number]: (message?: Message<MessageType> | Message<ContentScriptMessageType>, callback?: (x: any) => void) => boolean
