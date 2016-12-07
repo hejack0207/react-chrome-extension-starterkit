@@ -1,0 +1,31 @@
+html, body {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+#root {
+  width: 640px;
+  min-height: 360px;
+  font-family: Helvetica, Ubuntu, Arial, sans-serif;
+}
+
+.vertical-align {
+  display: flex;
+  flex-direction: row;
+
+  > [class^="col-"],
+  > [class*=" col-"] {
+    display: flex;
+    align-items: center; /* Align the flex-items vertically */
+    justify-content: center;
+    /* Optional, to align inner flex-items
+                                 horizontally within the column  */
+  }
+}
