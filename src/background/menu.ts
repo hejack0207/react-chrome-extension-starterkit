@@ -3,11 +3,11 @@ import Tab = chrome.tabs.Tab;
 import {ShowTweetLinkMessage} from "../content_scripts/protocol";
 
 enum menuItemId {
-  link
+  showTweetLinkUi
 }
 
 chrome.contextMenus.onClicked.addListener((info: OnClickData, tab: Tab) => {
-  if (info.menuItemId === menuItemId.link.toString()) {
+  if (info.menuItemId === menuItemId.showTweetLinkUi.toString()) {
     chrome.tabs.sendMessage(tab.id, new ShowTweetLinkMessage(info.linkUrl, tab.id), response => {
       console.log(response);
     });
@@ -16,7 +16,7 @@ chrome.contextMenus.onClicked.addListener((info: OnClickData, tab: Tab) => {
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
-    contexts: ['link'],
+    contexts: ['showTweetLinkUi'],
     title: 'Tweet Link',
-    id: menuItemId.link.toString()
+    id: menuItemId.showTweetLinkUi.toString()
   })});
