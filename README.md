@@ -8,7 +8,7 @@ Its only functionality is tweeting a link to the current tab or any link in a we
 ```
 git clone git@github.com:trbngr/react-chrome-extension-starterkit.git
 cd react-chrome-extension-starterkit
-yarn
+yarn #or npm install
 npm run build
 ```
 
